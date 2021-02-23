@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue基础</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<style type="text/css">
+			.content li {
+				width: 150px;
+				display: inline-block;
+				vertical-align: top;
+			}
+			.music {
+				width: 800px;
+				background: #EEEEEE;
+				font-size: 12px;
+			}
+			.cont {
+				width: 800px;
+				background: #EEEEEE;
+			}
+			
+			.cont .leftc {
+				width: 150px;
+				float: left;
+				height: 500px;
+				overflow-y: scroll;
+			}
+			.cont .leftc ul {
+				padding: 0;
+			}
+			.cont li {
+				list-style: none;
+				padding-left: 10px;
+				cursor: pointer;
+			}
+			.cont li:hover {
+				color: #FF0000;
+			}
+			.midc {
+				width: 300px;
+				float: left;
+				height: 500px;
+			}
+			.rightpl {
+				float: left;
+				width: 250px;
+			}
+			.foot {
+				width: 100%;
+			}
+			.clear {
+				clear: both;
+			}
+			.midc img {
+				width: 200px;
+				border-radius: 200px;
+			}
+			.midc img.isplay {
+				animation: imgScoll 10s infinite linear;
+			}
+			@keyframes imgScoll {
+				     0%{-webkit-transform:rotate(0deg);}
+				      25%{-webkit-transform:rotate(90deg);}
+				      50%{-webkit-transform:rotate(180deg);}
+				      75%{-webkit-transform:rotate(270deg);}
+				      100%{-webkit-transform:rotate(360deg);}
+			}
+			.userHeader {
+				width: 80px;
+				float: left;
+			}
+			.rightpl ul {
+				padding: 0;
+				height: 500px;
+				overflow-y: scroll;
+			}
+			.rightpl li p {
+				float: left;
+				height: 100px;
+				overflow: hidden;
+				width: 150px;
+			}
+		</style>
+	</head>
+	<body>
+	 
+		<div id="music" class="music">
+			 <div class="top">
+				 <input type="text" value="" v-model="searchKeyword" @keyup.enter = "searchMusic()" />
+				 <input type="button" value="搜索" @click="searchMusic()" />
+			 </div>
+			 <div class="cont">
+				 <div class="leftc">
+					 <ul>
+					 	<li v-for="(item,index) in musiclist" @click="playMusic(item.id)" >
+							<span>*</span><b>{{item.name}}</b><a v-if="item.mvid !=0" >aa</a>
+						</li>
+					 </ul>
+				 </div>
+				 <div class="midc">
+					 <img :src="musicImgSrc" width="200" :class="{'isplay':isPlay}" >
+				 </div>
+				 <div class="rightpl">
+					 <ul>
+					 	<li v-for="(item) in hotComments">
+							<img :src="item.user.avatarUrl" alt="" class="userHeader">
+							<p>{{item.content}}</p>
+						</li>
+					 </ul>
+				 </div>
+				 <div class="clear"></div>
+			 </div>
+			 <div class="foot">
+				 <audio controls="controls" height="30" width="600" :src="musicSrc" autoplay="autoplay" @play="play" @pause="pause" >
+				 	当前浏览器不支持audio
+				 </audio>
+			 </div>
+		</div>
+		
+		<script type="text/javascript" src="js/music.js" ></script>
+		 
+		
+	</body>
+</html>

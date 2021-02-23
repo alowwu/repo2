@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue基础</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<style type="text/css">
+			.content li {
+				width: 150px;
+				display: inline-block;
+				vertical-align: top;
+			}
+		</style>
+	</head>
+	<body>
+	 
+		<div id="app">
+			 <input type="text" name="" id="" value="" v-model="inputWeather" placeholder="请输入城市"  @keyup.enter="getWeather()"  />
+			 <input type="button" value="搜索" @click="getWeather()"/>
+			 <div class="content">
+				 <ul>
+				 	<li v-for="(item,index) in theWeather">
+						<h3>{{item.type}}</h3>
+						<p>{{item.low}}~{{item.high}}</p>
+						<p>{{item.date}}</p>
+					</li>
+				 </ul>
+			 </div>
+		</div>
+		
+		<script type="text/javascript">
+			 var app = new Vue({
+				 el: "#app",
+				 data: {
+					 inputWeather: "",
+					 theWeather: []
+				 },
+				 methods: {
+					 getWeather: function(){
+						 var This = this;
+						 axios.get("http://wthrcdn.etouch.cn/weather_mini?city="+This.inputWeather).then(function(response){
+							 This.theWeather = response.data.data.forecast;
+							 This.inputWeather = "";
+						 }),function(err){
+							 console.log(err);
+						 }
+					 }
+				 }
+			 })
+		  
+			 
+		</script>
+		 
+		
+	</body>
+</html>

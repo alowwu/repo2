@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue基础</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			 .notebook {
+				 width: 300px;
+				 padding: 10px 0;
+				 background: #EEEEEE;
+			 }
+			 .notebook li {
+				 width: 100%;
+			 }
+			 .notebook li a {
+				 margin-left: 50px;
+				 cursor: pointer;
+			 }
+		</style>
+	</head>
+	<body>
+		
+		<div id="notebook" class="notebook">
+			 <h2>记事本</h2>
+			 <input type="text"  value="" class="topShow" @keyup.enter= "addNote(theNoteNow)" v-model="theNoteNow"  />
+			 <ul>
+			 	<li v-for="(item,index) in notecont">
+					<span>{{index}}</span><b>{{item}}</b><a @click="removelist(index)" >*</a>
+				</li>
+			 </ul>
+			 <div class="bottomshow" v-show="notecont.length!=0">
+				 <span class="left">{{notecont.length}}item</span>
+				 <a class="right" @click="removeAll()">clear</a>
+			 </div>
+		</div>
+		
+		<script type="text/javascript">
+			 var app = new Vue({
+				 el: "#notebook",
+				 data: {
+					 theNoteNow: "",
+					 notecont: [
+						 "天天向上",
+						 "好好学习"
+					 ]
+				 },
+				 methods: {
+					 addNote: function(theNote){
+						this.notecont.push(theNote);
+						this.theNoteNow = '';
+					 },
+					 removelist: function(index){
+						 this.notecont.splice(index,1);
+					 },
+					 removeAll: function(){
+						 this.notecont  = ""
+					 }
+				 }
+			 })
+		</script>
+		 
+		
+	</body>
+</html>

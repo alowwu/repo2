@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue基础</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			 #app a {
+				 display: inline-block;
+				 width: 80px;
+				 height: 80px;
+				 background: #CCCCCC;
+				 vertical-align: top;
+			 }
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			<a @click="add()">aaa</a>
+			<a @click="remove()">bbb</a>
+			 <ul>
+				 {{ imgSrcArr}}
+				 <li v-for="(item,index) in imgSrcArr">
+					 {{ imgSrcArr[index] }} {{ item}}
+				 </li>
+			 </ul>
+		</div>
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					index: 1,
+					imgSrcArr: ['c','c','2','d','4','v']
+				},
+				methods: {
+					add: function() {
+						this.imgSrcArr.push("d");
+					},
+					remove: function() {
+						this.imgSrcArr.shift();
+					}
+				}
+			})
+		</script>
+		 
+		
+	</body>
+</html>

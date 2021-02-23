@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue基础</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			#app input {
+				height: 50px;
+				background: #ccc;
+				color: #FF0000;
+				line-height: 50px;
+				padding: 0 40px;
+			}
+			#app span {
+				height: 50px;
+				line-height: 50px;
+				width: 100px;
+				display: inline-block;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			<img src="http://p2.img.360kuai.com/dmfd/182_136_/t01e264eccac5eaa8be.jpg?size=1080x978" v-show="isShow" >
+			<input type="button" name="" id="" value="切换" @click="changeTab" />
+		</div>
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					isShow: true,
+				},
+				methods: {
+					changeTab: function(){
+						this.isShow = !this.isShow;
+					}
+				}
+			})
+		</script>
+		 
+		
+	</body>
+</html>

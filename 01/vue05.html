@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue基础</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			#app input {
+				height: 50px;
+				background: #ccc;
+				color: #FF0000;
+				line-height: 50px;
+				padding: 0 40px;
+			}
+			#app span {
+				height: 50px;
+				line-height: 50px;
+				width: 100px;
+				display: inline-block;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			<input type="button" value="-" @click="addNum(0)">
+			<span class="cont" v-text="viewShow"></span>
+			<input type="button"  value="+" @click="addNum(1)"/>
+		</div>
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					viewShow: 0
+				},
+				methods: {
+					addNum: function(onOff){
+						
+						if(onOff) {
+							this.viewShow ++;
+						}else {
+							if(this.viewShow <= 0) {
+								alert("别点了，到底啦");
+							}else {
+								this.viewShow --;
+							}
+							
+						}
+						
+					}
+				}
+			})
+		</script> 
+		
+	</body>
+</html>
